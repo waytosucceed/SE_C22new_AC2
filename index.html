@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/Logo_last.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+MX:wght@100..400&display=swap" rel="stylesheet" />
+    <title>Activity_2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #678923; */
+            /* min-height: 100vh; */
+            background: url("assets/Backgrounds.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            object-fit: cover;
+min-height: 100vh;
+        }
+
+       #heading {
+             text-align: center;
+            background-color: whitesmoke;
+            padding: 10px 20px; /* Increased padding: 15px top/bottom, 40px left/right */
+            margin: 10px auto; /* Changed to auto for centering */
+            color: black;
+            font-size: 2em;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            width: fit-content; /* Changed from 40% to fit-content */
+            border-radius: 10px; /* Added some border radius for better appearance */
+        }
+
+        .activity {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+            height: auto;
+        }
+
+        .sidebar {
+            width: 100px;
+            height: fit-content;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .questionButtons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .qBtn {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #f5f5f5; /* Grayish white background */
+            color: black;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            width: 85%;
+            text-align: center;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Dark shadow bottom right */
+            position: relative;
+        }
+
+        .qBtn:hover {
+            background-color: #e8e8e8;
+            transform: translateY(-1px);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .qBtn.active {
+            background-color: #f5f5f5;
+            box-shadow: none; /* Remove shadow when active */
+            border: 3px solid #000; /* Dark black outline */
+            transform: translateY(2px); /* Pressed effect */
+        }
+
+        .qBtn:active {
+            box-shadow: none;
+            border: 3px solid #000;
+            transform: translateY(2px);
+        }
+
+        .mainContent {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .backGroundMainDiv {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 15px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            min-height: 500px;
+            flex: 1;
+        }
+
+        #backgroundImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        .questionContent {
+            position: relative;
+            z-index: 2;
+        }
+
+        .questionText {
+            font-size: 1.9em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .middleSection {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            min-height: 350px;
+        }
+
+        .imageSection {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .questionImg {
+            max-width: 100%;
+            max-height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .optionsSection {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .optionGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .optionBtn {
+            padding: 20px;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.6em;
+            text-align: center;
+            /* min-height: 120px; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+            position: relative;
+        }
+
+        .optionBtn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .optionBtn.correct {
+            background: #d4edda;
+            border-color: #4CAF50;
+            color: #155724;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .optionBtn.incorrect {
+            background: #f8d7da;
+            border-color: #f44336;
+            color: #721c24;
+            box-shadow: 0 8px 25px rgba(244, 67, 54, 0.4);
+        }
+
+        .optionImage {
+            max-width: 250px;
+            max-height: 250px;
+            object-fit: contain;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .optionBtn.image-option {
+            min-height: 250px;
+            padding: 15px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+        }
+
+        .optionBtn.image-option:hover {
+            background: linear-gradient(145deg, #f8f9ff, #e8e9ff);
+        }
+
+        .optionBtn.image-option.correct {
+            background: linear-gradient(145deg, #d4edda, #c3e6cb);
+        }
+
+        .optionBtn.image-option.incorrect {
+            background: linear-gradient(145deg, #f8d7da, #f1c2c7);
+        }
+
+        /* Input field styles */
+        .inputGrid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .inputContainer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .inputLabel {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            min-width: 80px;
+        }
+
+        .answerInput {
+            flex: 1;
+            padding: 15px 20px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        /* Inline input styles for questions */
+        .inline-input {
+            display: inline-block;
+            width: 80px;
+            /* padding: 8px 12px; */
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 0 5px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .inline-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .inline-input.correct {
+            border-color: #4CAF50;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .inline-input.incorrect {
+            border-color: #f44336;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .answerInput:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+
+        .answerInput.correct {
+            border-color: #4CAF50;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .answerInput.incorrect {
+            border-color: #f44336;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .checkBtn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .checkBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .feedbackText {
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .nextBtn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .nextBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .finalScreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 20px;
+            color: white;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .finalImage {
+            max-width: 300px;
+            border-radius: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .activity {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 150px;
+                margin-bottom: 20px;
+            }
+
+            .questionButtons {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .qBtn {
+                width: auto;
+                min-width: 50px;
+            }
+
+            .middleSection {
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .questionText {
+                font-size: 1.2em;
+            }
+
+            .optionGrid {
+                grid-template-rows: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .optionBtn {
+                font-size: 1em;
+                padding: 15px;
+                min-height: 100px;
+            }
+
+            .optionBtn.image-option {
+                min-height: 120px;
+            }
+
+            .optionImage {
+                max-width: 200px;
+                max-height: 200px;
+            }
+
+            .inputContainer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .inputLabel {
+                min-width: auto;
+            }
+
+            .inline-input {
+                width: 60px;
+                font-size: 1em;
+            }
+        }
+
+        .optionGrid.three-options {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .optionGrid.three-options .optionBtn:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .optionGrid.one-option {
+            grid-template-columns: 1fr;
+        }
+
+        .optionGrid.has-images {
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .optionGrid.has-images .optionBtn {
+            min-height: 160px;
+            padding: 20px;
+        }
+
+        .optionGrid.has-images .optionImage {
+            max-width: 260px;
+            max-height: 160px;
+        }
+
+        @media (max-width: 768px) {
+            .optionGrid.has-images {
+                grid-template-columns: 1fr;
+            }
+
+            .optionGrid.has-images .optionBtn {
+                min-height: 140px;
+            }
+        }
+
+        .fraction-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            vertical-align: middle;
+        }
+
+        .whole-number {
+            font-size: 1em;
+        }
+
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+            font-size: 1em;
+        }
+
+        .numerator,
+        .denominator {
+            line-height: 1;
+            padding: 2px 4px;
+        }
+
+        .fraction-line {
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            margin: 2px 0;
+        }
+
+        .questionText .fraction-container {
+            margin: 0 4px;
+        }
+
+        .optionBtn .fraction-container {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header" style="
+      width: auto;
+      box-shadow: 5px 5px 10px rgb(0, 0, 0);
+      padding-bottom: 10px;
+      background-color: white;
+    ">
+        <img src="./assets/Logo.png" width="5%" style="float: left; margin-top: 25px; text-align: left"
+            class="img-responsive" />
+        <span>
+            <img src="./assets/header.png" width="30%" height="" class="img-responsive" style="text-align: left" />
+        </span>
+    </div>
+<div>
+            <p id="heading">COMMERCIAL MATH</p>
+    </div>
+    
+
+    <div class="activity">
+        <!-- Left Sidebar with Question Buttons -->
+        <div class="sidebar">
+            <div class="questionButtons" id="questionButtons"></div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="mainContent">
+            <div class="backGroundMainDiv">
+                <div id="questionContent" class="questionContent"></div>
+
+                <div class="finalScreen" id="finalScreen" style="display:none;">
+                    <div>
+                        <h2>🎉 Well Done!</h2>
+                        <p>You've completed all questions!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let selectedAnswer = null;
+        let userInputs = [];
+        let data = [
+  {
+    "questionNo": "Q1",
+    "question": [
+      "A train travels 828 km in 9 hours. How far will it travel in 360 minutes?<br>Hint: 1hr = 60 mins"
+    ],
+    "options": ["618 km", "502 km", "552 km", "588 km"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q2",
+    "question": [
+      "Derek earns $48,000 in 3 months. What is his yearly income?"
+    ],
+    "options": ["$192000", "$184000", "$196000", "$188000"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q3",
+    "question": [
+      "The price of 9000 milliliters of olive oil is $378. What is the price of 15 liters?"
+    ],
+    "options": ["$702", "$540", "$630", "$615"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q4",
+    "question": [
+      "If the tax on a $60 item is $4.20, what’s the tax on a $150 item?"
+    ],
+    "options": ["$10.50", "$9.90", "$11.00", "$10.20"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q5",
+    "question": [
+      "A seed tray is full of food. It has enough seeds to feed one crow for 3 days, or one honeyeater for 6 days.<br> What is the maximum number of days the same tray can feed one crow and one honeyeater together?"
+    ],
+    "options": ["1.5 days", "2 days", "3 days", "4.5 days"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q6",
+    "question": [
+      "A bird feeder is full of seeds. It has enough food to feed one sparrow for 4 days, or one parrot for 8 days.<br> What is the maximum number of days the same feeder can feed one sparrow and one parrot together?"
+    ],
+    "options": ["1.5 days", "2 days", "2.5 days", "3 days"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q7",
+    "question": [
+      "Part of a number line is shown below.<br><img width='40%' src='./assets/1.png'><br> What decimal does the arrow point to?"
+    ],
+    "options": ["0.25", "0.75", "0.3", "0.6"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q8",
+    "question": [
+      "Liam, Priya, and Ethan have some stamps.<br> Liam has 8 times as many stamps as Priya.<br> Ethan has ½ times as many stamps as Priya.<br> Liam has how many times as many stamps as Ethan?"
+    ],
+    "options": ["16", "10", "8", "6"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q9",
+    "question": [
+      "Noah, Aisha, and Zane have some marbles.<br> Noah has 6 times as many marbles as Aisha.<br> Zane has ½ as many marbles as Aisha.<br> Noah has how many times as many marbles as Zane?"
+    ],
+    "options": ["6", "8", "10", "12"],
+    "correct": 3
+  },
+  {
+    "questionNo": "Q10",
+    "question": [
+      "A concert venue sold 500 tickets in a week.<br> Tickets were sold only on Monday, Tuesday, Wednesday, and Thursday.<br> On Tuesday, sales were half of Monday’s.<br> On Wednesday, sales were half of Tuesday’s.<br> On Thursday, 80 tickets were sold.<br> How many tickets were sold on Monday?"
+    ],
+    "options": ["240", "120", "140", "168"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q11",
+    "question": [
+      "A bookstore sold 600 books over four days: Monday, Tuesday, Wednesday, and Thursday. On Tuesday, it sold half as many books as on Monday. On Wednesday, it sold half as many books as on Tuesday. On Thursday, it sold 250 books. How many books were sold on Monday?"
+    ],
+    "options": ["100", "160", "200", "240"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q12",
+    "question": [
+      "Two prices are shown with missing digits represented by shapes. <BR><img width='35%' src='./assets/2.png' ><BR> What is the greatest possible difference between these prices?"
+    ],
+    "options": ["$1.61", "$1.79", "$2.21", "$2.39"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q13",
+    "question": [
+      "A florist has a box of flower bulbs to plant.<br> She plants ½ in section A.<br> Then ¾ of the remaining in section B.<br> She has 6 bulbs left for section C.<br> How many bulbs were in the box at first?"
+    ],
+    "options": ["16", "18", "24", "48"],
+    "correct": 3
+  },
+  {
+    "questionNo": "Q14",
+    "question": [
+      "A farmer has a basket of mango saplings to plant.<br> He plants ½ of them in Field A.<br> Then, he plants ⅖ of the remaining saplings in Field B.<br> He has 6 saplings left for Field C.<br> How many saplings were in the basket at first?"
+    ],
+    "options": ["30", "25", "20", "15"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q15",
+    "question": [
+      "Thomas is travelling to Canada and wants to exchange some dollars.<br> Booth A offers to give him $390.63 for 500 Canadian Dollars, and Booth B offers $360 for 450 Canadian Dollars.<br> Which booth offers a better exchange rate?"
+    ],
+    "options": ["Booth A", "Booth B", "Both are equal", "Can’t tell"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q16",
+    "question": [
+      "Joe bikes 5 miles in 45 minutes. If he continues at the same pace, how long will it take to bike 18 miles?"
+    ],
+    "options": ["180 minutes", "2.7 hours", "2.5 hours", "162 minutes"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q17",
+    "question": [
+      "Two machines are used in a factory to cool hot metal sheets.<br> Machine X cools 1,000 liters of water in 5 minutes.<br> Machine Y cools 1,500 liters of water in 7.5 minutes.<br>  Some workers think Machine Y is faster because it handles more water. Are they correct?"
+    ],
+    "options": ["Yes, Machine Y handles more water", "No, Machine X is faster", "No, both work at the same rate", "Yes, Machine X is slower"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q18",
+    "question": [
+      "Ravi and Sohail earn annual incomes in the ratio 4:5.<br> If Ravi’s income increases by 25% and Sohail’s by 20%, what is the new ratio?"
+    ],
+    "options": ["5:8", "4:7", "6:5", "5:6"],
+    "correct": 3
+  },
+  {
+    "questionNo": "Q19",
+    "question": [
+      "After getting a 12.5% salary hike, Priya’s monthly salary became $45,000. How much more would she have earned annually if the hike had been 15% instead of 12.5%?"
+    ],
+    "options": ["$1,800 more", "$12,000 more", "$1,500 more", "$1,200 more"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q20",
+    "question": [
+      "After getting a 12% salary hike, Meera’s monthly salary became $44,800. How much more would she have earned annually if the hike had been 15% instead of 12%?"
+    ],
+    "options": ["$14,400 more", "$1,440 more", "$2,400 more", "$2,520 more"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q21",
+    "question": [
+      "After getting a 12.5% salary hike, Arjun’s monthly salary became $56,250. How much more would he have earned annually if the hike had been 15% instead of 12.5%?"
+    ],
+    "options": ["$2,250 more", "$2,100 more", "$15,000 more", "$1,500 more"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q22",
+    "question": [
+      "Maya bought a novel.",
+"<br><b>Day 1:</b> She read",{
+              "fraction": {
+                "numerator": 1,
+                "denominator": 5
+              }
+             }, " of the pages + 12 more",
+"<br><b>Day 2:</b> She read ",{
+              "fraction": {
+                "numerator": 1,
+                "denominator": 4
+              }
+             }," of the remaining + 15",
+"<br><b>Day 3:</b> She read ",{
+              "fraction": {
+                "numerator": 1,
+                "denominator": 3
+              }
+             }," of what’s left + 18",
+"<br>After Day 3, she was left with 62 pages. ",
+"What was the total number of pages?"
+    ],
+    "options": ["120", "180", "240", "300"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q23",
+    "question": [
+      "Ravi and Tina both got salary hikes this year.",
+"<br>Ravi’s monthly salary was $2,400. It increased by ⅛ of the original salary.",
+ "<br>Tina’s monthly salary was also $2,400. Her salary increased by 12.5%.",
+"<br>Whose new salary is higher?"
+
+    ],
+    "options": ["Ravi", "Tina", "Both have equal new salaries", "Cannot be determined"],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q24",
+    "question": [
+      "A plumber has a roll of copper pipe 25 meters long that weighs 50 kg. He needs 150 meters for a big plumbing project, but the pipe used must not weigh more than 520 kg.<br>Is this copper pipe suitable?"
+    ],
+    "options": ["Yes, because it will weigh less than 520 kg", "No, because it will weigh more than 520 kg", "No, because it's not enough pipe", "Yes, because it will weigh exactly 520 kg"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q25",
+    "question": [
+      "A company gave salary raises to two employees, Aanya and Ben.<br>Aanya’s salary was $3,600. It was increased by one-tenth of her salary. <br>Ben’s salary was also $3,600, and it increased by 9%.<br>Who now has the higher salary after the raise?"
+    ],
+    "options": ["Aanya", "Ben", "Both have equal new salaries", "Can’t be determined"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q26",
+    "question": [
+      "Two stores offer discounts on the same jacket priced at $100.<br>Store A gives 25% off, then adds 5% tax on the discounted price.<br>Store B gives 20% off, then adds 2.5% tax on the discounted price.<br>Which store offers the better final price?"
+    ],
+    "options": ["Store A", "Store B", "Both offer the same", "Depends on the tax rate"],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q27",
+    "question": [
+      "A gadget is on sale with two deals:<br><b>Deal 1:</b> 30% off the original price<br><b>Deal 2:</b> 15% off, then an additional 20% off on the reduced price<br>Which deal gives a better price?"
+    ],
+    "options": ["Deal 1", "Deal 2", "Both are equal", "None of these"],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q28",
+    "question": [
+      "Two friends bought the same item but from different places:<br>Jasmine bought it with a ¼ discount and then paid 10% tax.<br>Arjun bought it with a 15% discount and no tax.<br>The item’s original price is $80. Who paid more, and by how much?"
+    ],
+    "options": ["Jasmine paid $2 more", "Arjun paid $2 more", "Both paid the same", "Jasmine paid $1 less"],
+    "correct": 1
+  }
+]
+
+
+        window.onload = () => {
+            renderButtons();
+            renderQuestion();
+        };
+
+        function renderButtons() {
+            const container = document.getElementById('questionButtons');
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.innerText = item.questionNo;
+                btn.className = 'qBtn' + (index === currentIndex ? ' active' : '');
+                btn.onclick = () => {
+                    currentIndex = index;
+                    selectedAnswer = null;
+                    userInputs = [];
+                    renderQuestion();
+                };
+                container.appendChild(btn);
+            });
+            setTimeout(() => {
+                const activeBtn = container.querySelector('.qBtn.active');
+                if (activeBtn) {
+                    activeBtn.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            }, 100);
+        }
+
+        function processQuestionContent(questionContent) {
+            if (typeof questionContent === 'string') {
+                return questionContent;
+            }
+
+            if (Array.isArray(questionContent)) {
+                return questionContent.map(item => {
+                    if (typeof item === 'string') {
+                        return item;
+                    } else if (item.fraction) {
+                        return renderFraction(item.fraction);
+                    }
+                    return '';
+                }).join('');
+            }
+
+            return questionContent;
+        }
+
+        function renderFraction(fractionObj) {
+            const { whole, numerator, denominator } = fractionObj;
+
+            let html = '<span class="fraction-container">';
+
+            if (whole && whole > 0) {
+                html += `<span class="whole-number">${whole}</span>`;
+            }
+
+            if (numerator && denominator) {
+                html += `<span class="fraction">
+                    <span class="numerator">${numerator}</span>
+                    <span class="fraction-line"></span>
+                    <span class="denominator">${denominator}</span>
+                </span>`;
+            }
+
+            html += '</span>';
+            return html;
+        }
+
+        function renderQuestion() {
+            const questionContent = document.getElementById('questionContent');
+            const finalScreen = document.getElementById('finalScreen');
+            const questionButtons = document.getElementById('questionButtons');
+
+            if (currentIndex >= data.length) {
+                questionContent.style.display = 'none';
+                questionButtons.style.display = 'none';
+                finalScreen.style.display = 'flex';
+                return;
+            }
+
+            const q = data[currentIndex];
+
+            // Process question content
+            let questionText = processQuestionContent(q.question);
+            
+            // For input questions, replace _____ with input fields
+            if (q.input) {
+                let inputIndex = 0;
+                questionText = questionText.replace(/_____/g, () => {
+                    return `<input type="text" class="inline-input" id="input_${inputIndex++}" placeholder="" />`;
+                });
+            }
+
+            let html = `<h3 class='questionText'>${questionText}</h3>`;
+            html += `<div class='middleSection'>`;
+
+            // Left side - Image
+            if (q.image) {
+                html += `<div class="imageSection">
+                            <img src="${q.image}" alt="question" class="questionImg"/>
+                         </div>`;
+            }
+
+            // Right side - Options/Inputs and feedback
+            html += `<div class="optionsSection">`;
+
+            // Check if this question has input fields or options
+            if (q.input) {
+                // For input questions, we've already added the inputs inline in the question text
+                html += `<button class="checkBtn" onclick="handleInputCheck()">Submit</button>`;
+            } else {
+                // Render option buttons (existing logic)
+                const hasImages = q.options.some(opt => typeof opt === 'string' && /\.(png|jpe?g|svg)$/i.test(opt));
+
+                let gridClass = 'optionGrid';
+                if (hasImages) {
+                    gridClass += ' has-images';
+                }
+                if (q.options.length === 1) {
+                    gridClass += ' one-option';
+                } else if (q.options.length === 3) {
+                    gridClass += ' three-options';
+                }
+
+                html += `<div class="${gridClass}">`;
+
+                q.options.forEach((opt, idx) => {
+                    const isImage = typeof opt === 'string' && /\.(png|jpe?g|svg)$/i.test(opt);
+                    const buttonClass = isImage ? 'optionBtn image-option' : 'optionBtn';
+                    html += `<button class="${buttonClass}" onclick="handleOptionClick(${idx})">`;
+
+                    if (isImage) {
+                        html += `<img src="assets/${opt}" alt="option-${idx}" class="optionImage"/>`;
+                    } else if (opt.fraction) {
+                        html += renderFraction(opt.fraction);
+                    } else {
+                        html += opt;
+                    }
+
+                    html += `</button>`;
+                });
+
+                html += `</div>`;
+            }
+
+            html += `<div style='display:flex'><div style='width:50%'><p class="feedbackText" id="feedbackText"></p></div>
+                     <div style='width:50%'><button class="nextBtn" id="nextBtn" style="display:none;" onclick="handleNext()">Next</button></div></div>
+                     </div></div>`;
+
+            questionContent.innerHTML = html;
+            if (q.input) {
+        const placeholders = questionContent.querySelectorAll('.input-placeholder');
+        placeholders.forEach((placeholder, idx) => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'inline-input';
+            input.id = `input_${idx}`;
+            input.placeholder = '';
+            
+            // Style the input to fit inline
+            input.style.cssText = `
+                display: inline-block;
+                width: 80px;
+                padding: 2px 6px;
+                margin: 0 2px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: inherit;
+                font-family: inherit;
+                background: white;
+                text-align: center;
+            `;
+            
+            placeholder.parentNode.replaceChild(input, placeholder);
+        });
+    }
+            questionContent.style.display = 'block';
+            finalScreen.style.display = 'none';
+            renderButtons();
+        }
+
+        function handleInputCheck() {
+            const q = data[currentIndex];
+            const feedback = document.getElementById('feedbackText');
+            const nextBtn = document.getElementById('nextBtn');
+            const checkBtn = document.querySelector('.checkBtn');
+
+            // Collect all input values
+            userInputs = [];
+            let allCorrect = true;
+
+            for (let i = 0; i < q.input.length; i++) {
+                const inputElement = document.getElementById(`input_${i}`);
+                const userValue = inputElement.value.trim().toLowerCase();
+                userInputs.push(userValue);
+
+                const correctAnswer = q.correct[i].trim().toLowerCase();
+                const isCorrect = userValue === correctAnswer;
+
+                if (isCorrect) {
+                    inputElement.classList.remove('incorrect');
+                    inputElement.classList.add('correct');
+                } else {
+                    inputElement.classList.remove('correct');
+                    inputElement.classList.add('incorrect');
+                    allCorrect = false;
+                }
+            }
+
+            if (allCorrect) {
+                feedback.innerHTML = `<span class='emoji'>✅</span> Correct! Great job!`;
+                feedback.style.color = '#4CAF50';
+
+                // Disable inputs and check button
+                for (let i = 0; i < q.input.length; i++) {
+                    document.getElementById(`input_${i}`).disabled = true;
+                }
+                checkBtn.style.display = 'none';
+
+                nextBtn.innerText = currentIndex + 1 < data.length ? 'Next' : 'Finish';
+                nextBtn.style.display = 'block';
+            } else {
+                feedback.innerHTML = `<span class='emoji'>❌</span> Some answers are incorrect. Try again!`;
+                feedback.style.color = '#f44336';
+            }
+        }
+
+
+        function handleOptionClick(index) {
+            if (selectedAnswer !== null) return; // Prevent multiple selections
+
+            selectedAnswer = index;
+            const q = data[currentIndex];
+            const feedback = document.getElementById('feedbackText');
+            const nextBtn = document.getElementById('nextBtn');
+            const optionBtns = document.querySelectorAll('.optionBtn');
+
+            // Disable further selection temporarily
+            optionBtns.forEach((btn) => {
+                btn.style.pointerEvents = 'none';
+            });
+
+            if (index === q.correct) {
+                // Highlight selected correct answer
+                optionBtns[index].classList.add('correct');
+
+                feedback.innerHTML = `<span class='emoji'>✅</span> Correct! Great job!`;
+                feedback.style.color = '#4CAF50';
+
+                nextBtn.innerText = currentIndex + 1 < data.length ? 'Next' : 'Finish';
+                nextBtn.style.display = 'block';
+            } else {
+                // Highlight only incorrect answer clicked
+                optionBtns[index].classList.add('incorrect');
+
+                feedback.innerHTML = `<span class='emoji'>❌</span> Try again!`;
+                feedback.style.color = '#f44336';
+
+                // Re-enable the buttons so user can try again
+                optionBtns.forEach((btn, idx) => {
+                    if (idx !== index) {
+                        btn.style.pointerEvents = 'auto';
+                    }
+                });
+
+                // Reset selectedAnswer so user can choose again
+                selectedAnswer = null;
+            }
+        }
+
+        function handleNext() {
+            if (currentIndex + 1 < data.length) {
+                currentIndex++;
+                selectedAnswer = null;
+                userInputs = [];
+                renderQuestion();
+            } else {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+    </script>
+</body>
+
+</html>
